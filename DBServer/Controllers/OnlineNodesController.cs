@@ -102,8 +102,8 @@ namespace DBServer.Controllers
         public async Task<IActionResult> GoOnline([FromBody] GoOnlineRequest request)
         {
             string clientIp = HttpContext.Connection.RemoteIpAddress?.ToString();
-            //string clientIp = "192.1.1.1";
-            OnlineNodes newnode = new OnlineNodes { DNAddress = request.DNAddress, IPAddress = clientIp };  
+            
+            OnlineNodes newnode = new OnlineNodes { DNAddress = request.DNAddress, IPAddress = clientIp, Port=0 };  
 
             _context.OnlineNodes.Add(newnode);
             await _context.SaveChangesAsync();
